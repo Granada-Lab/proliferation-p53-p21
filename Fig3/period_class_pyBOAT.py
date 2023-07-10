@@ -51,7 +51,8 @@ for i in range(3):
     for column in data: 
         signal=data[column] 
         detrended_signal = wAn.sinc_detrend(signal, T_c = 50)
-        wAn.compute_spectrum(detrended_signal, do_plot = False) #computes the detrended signal wavelet spectrum
+        norm_amp = wAn.normalize_amplitude(detrended_signal, window_size=50)
+        wAn.compute_spectrum(norm_amp, do_plot = False) 
         wAn.get_maxRidge(power_thresh = 0, smoothing_wsize = 4) #gets the maximum ridge
         rd = wAn.ridge_data
         
